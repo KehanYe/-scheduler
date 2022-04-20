@@ -3,19 +3,24 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
+
 import "index.scss";
 
 import Button from "components/Button";
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList"
-import InterviewerListItem from "components/InterviewerListItem"
-import InterviewerList from "components/InterviewerList"
+import InterviewerListItem from "components/InterviewerListItem";
+import InterviewerList from "components/InterviewerList";
+import Appointment from "components/Appointment/index";
 
 // -------------- Button --------------
 
 storiesOf("Button", module)
   .addParameters({
-    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+    backgrounds: [
+      { name: "white", value: "#fff"},
+      { name: "dark", value: "#222f3e", default: true }
+    ]
   })
   .add("Base", () => <Button>Base</Button>)
   .add("Confirm", () => <Button confirm>Confirm</Button>)
@@ -44,8 +49,8 @@ storiesOf("DayListItem", module) // Initaties Storybook and registers our DayLis
     <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />
     ));
 
-// ------ test data for days array to be passed into DayList as prop -----------
-    const days = [
+// -------------- DayList --------------
+const days = [
   {
     id: 1,
     name: "Monday",
@@ -62,8 +67,6 @@ storiesOf("DayListItem", module) // Initaties Storybook and registers our DayLis
     spots: 0,
   },
 ];
-
-// -------------- DayList --------------
 
 storiesOf("DayList", module)
   .addParameters({
@@ -118,7 +121,6 @@ storiesOf("InterviewerListItem", module)
 
   // -------------- InterviewerList --------------
 
-
   const interviewers = [
     { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
     { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
@@ -129,7 +131,7 @@ storiesOf("InterviewerListItem", module)
   
   storiesOf("InterviewerList", module)
     .addParameters({
-      backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+      backgrounds: [{ name: "white", value: "#fff", default: true }]
     })
     .add("Initial", () => (
       <InterviewerList
@@ -148,3 +150,15 @@ storiesOf("InterviewerListItem", module)
         onChange={action("setInterviewer")}
       />
   ))
+
+// -------------- Appointments --------------
+
+storiesOf("Appointments", module)
+.addParameters({
+  backgrounds: [
+    { name: "white", value: "#fff", default: true },
+    { name: "dark", value: "#222f3e"}
+  ]
+})
+  .add("Appointments", () => <Appointment />)
+  .add("Appointments with Time", () => <Appointment time="12pm" />)
