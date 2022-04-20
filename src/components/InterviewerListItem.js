@@ -5,9 +5,10 @@ import 'components/InterviewerListItem.scss';
 export default function InterviewerListItem(props) {
 	const { id, name, avatar, selected, setInterviewer } = props;
 
-	const InterviewerItemsClass = classNames(
-    {'interviewers__item--selected': selected}
-  );
+	const InterviewerItemsClass = classNames({
+    'interviewers__item--selected': selected,
+    'interviewers__item':!selected
+  });
   
 	return (
 		<li className={InterviewerItemsClass} onClick={() => setInterviewer(id)}>
