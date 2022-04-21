@@ -1,7 +1,8 @@
-import React, {useState} from 'react-'
+import React, {useState} from 'react'
 
+import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
-import InterviewerList from 'components/InterviewList'
+
 
 export default function Empty(props) {
   const {interviewers, onSave, onCancel} = props
@@ -32,7 +33,7 @@ export default function Empty(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={onCancel}>Cancel</Button>
-          <Button confirm oncliek={onSave}>Save</Button>
+          <Button confirm oncliek={onSave(student, interviewer)}>Save</Button>
         </section>
       </section>
     </main>
