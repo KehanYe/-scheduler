@@ -154,7 +154,7 @@ storiesOf("InterviewerListItem", module)
       />
   ))
 
-// -------------- Appointments with Header --------------
+// -------------- Appointments with Header and Empty --------------
 
 storiesOf("Appointments", module)
 .addParameters({
