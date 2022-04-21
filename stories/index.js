@@ -167,7 +167,7 @@ storiesOf("Appointments", module)
   .add("Appointments", () => <Appointment />)
   .add("Appointments with Time", () => <Appointment time="12pm" />)
   .add("Header", () => <Header time="12pm" />)
-  .add("Empty", () => <Empty onAdd={action("onClick") }/>)
+  .add("Empty", () => <Empty onAdd={action("onAdd") }/>)
   .add("Show", () => (
     <Show
       student="Kehan Ye Fu"
