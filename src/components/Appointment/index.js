@@ -1,13 +1,22 @@
 import React from "react"
 import "./styles.scss"
 
-export default function Appointment({time}) {
+import Header from 'components/Appointment/Header';
+import Show from 'components/Appointment/Show';
+import Empty from 'components/Appointment/Empty';
+// import Form from './Form';
+// import Status from './Status';
+// import Confirm from './Confirm';
+// import Error from './Error';
 
-  const appointmentTime = (time) => {
-    return time ? `Appointment at ${time}` : "No Appointments";
-  };
+
+export default function Appointment({time, interview}) {
 
   return  (
-    <article className="appointment">{appointmentTime(time)}</article>
+    <article className="appointment">
+      <Header time={time} />
+        {interview ? <Show student={interview.student} interviewer={interview.interviewer} /> : <Empty />}
+    
+    </article>
   )
 };
