@@ -7,14 +7,18 @@ import { action } from "@storybook/addon-actions";
 import "index.scss";
 
 import Button from "components/Button";
+
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList"
+
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
+
 import Appointment from "components/Appointment/index";
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty"
 import Show from "components/Appointment/Show"
+import Confirm from "components/Appointment/Confirm"
 
 
 // -------------- Button --------------
@@ -174,5 +178,12 @@ storiesOf("Appointments", module)
       interviewer={interviewer}
       onEdit={action("onEdit")} 
       onDelete={action("onDelete")}
+    />
+  ))
+  .add("Confirm", () => (
+    <Confirm
+      message="Delte the appointment?"
+      onConfirm={action("onConfirm")} 
+      onCancel={action("onCancel")}
     />
   ))
