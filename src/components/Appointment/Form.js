@@ -4,7 +4,7 @@ import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
 
 
-export default function Empty(props) {
+export default function Form (props) {
   const {interviewers, onSave, onCancel} = props
 
   const [student, setStudent] = useState(props.student || "");
@@ -14,7 +14,8 @@ export default function Empty(props) {
 	return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
