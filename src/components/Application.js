@@ -58,16 +58,28 @@ const appointments = Object.values(appointmentsData).map(
 );
 
 export default function Application(props) {
-  const [days, setDays] = useState([]);
-	const [day, setDay] = useState("Monday");
+  // const [set, setState] = useState({});
+	// const [day, setDay] = useState("Monday");
 
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointment: {}
+  });
+
+  const setDay = day => setState({...state, day})
+  const setDays = days => setState({...state, days: days})
 
   useEffect(() => {
-    axios.get('http://localhost:8001/api/days').then(response => {
-      console.log("axios get request for day", response.data);
-      setDays([...response.data])
+    axios.get('http://localhost:8001/api/days')
+    .then(response => {
+      console.log("axios get request for days=>", response.data);
+      const days = response.data
+      setState(prev =>({...prev, days}))
     })
   }, []);
+
+  console.log("state.days", state.days)
 
   return (
 		<main className="layout">
@@ -76,9 +88,9 @@ export default function Application(props) {
 				<hr className="sidebar__separator sidebar--centered" />
 				<nav className="sidebar__menu"> 
           <DayList
-            days={days}
-            value={day}
-            onChange={setDay}
+            days={state.days}
+            value={state.day}
+            onChange={state.setDay}
           />
         </nav>
 				<img className="sidebar__lhl sidebar--centered" src="images/lhl.png" alt="Lighthouse Labs" />{' '}
