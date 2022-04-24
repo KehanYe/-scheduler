@@ -7,7 +7,12 @@ export default function useVisualMode(initial) {
   // console.log("useVisualMode", useVisualMode)
 
   //takes a new mode and sets mode, and updates history
-  function transition (newMode) {
+  function transition (newMode, replace = false) {
+    if (replace){
+      history.pop();
+      setMode(initial)
+    }
+    
     setMode(newMode)
     let updatedHistory = [...history, newMode];
     setHistory(updatedHistory)
