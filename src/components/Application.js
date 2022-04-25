@@ -7,6 +7,9 @@ import DayList from './DayList'
 import Appointment from 'components/Appointment/';
 import {getAppointmentsForDay, getInterview} from "../helpers/selectors"
 
+// Hooks
+import useVisualMode from "hooks/useVisualMode"
+
 // SASS Styling
 import 'components/Application.scss';
 
