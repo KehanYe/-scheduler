@@ -15,30 +15,29 @@ const SHOW = 'SHOW';
 const CREATE = 'CREATE';
 // const SAVING = "SAVING";
 
-export default function Appointment({ id, time, interview, interviewer, bookInterview}) {
-  
-  const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
-  
-  // debugger
+export default function Appointment({ id, time, interview, interviewer, bookInterview }) {
+	const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
-  function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    }
-    // console.log("save function properties", interviewer, interview)
-    bookInterview(id, interview);
-    transition(SHOW)
-  }
+	// debugger
 
-  console.log("mode in index", mode)
+	function save(name, interviewer) {
+		const interview = {
+			student: name,
+			interviewer
+		};
+		// console.log("save function properties", interviewer, interview)
+		console.log('id in appointment component', id);
+		bookInterview(id, interview).then(() => transition(SHOW));
+	}
+
+	console.log('mode in index', mode);
 
 	return (
 		<article className="appointment">
 			<Header time={time} />
 			{mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === CREATE && <Form interviewers={interviewer} onCancel={back} onSave={save}/>}
-    	{mode === SHOW && <Show student={interview.student} interviewer={interview.interviewer} />}
+			{mode === CREATE && <Form interviewers={interviewer} onCancel={back} onSave={save} />}
+			{mode === SHOW && <Show student={interview.student} interviewer={interview.interviewer} />}
 		</article>
 	);
 }
