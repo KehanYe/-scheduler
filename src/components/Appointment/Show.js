@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default function Show({ student, interviewer, onEdit, onDelete }) {
+	console.log("this is inteviewer in show.js", interviewer)
+	// debugger -> implemented to address bug resolving from improper hook us
 	return (
 		<main className="appointment__card appointment__card--show">
 			<section className="appointment__card-left">

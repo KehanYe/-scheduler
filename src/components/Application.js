@@ -16,29 +16,47 @@ import 'components/Application.scss';
 
 
 export default function Application(props) {
-  // const [set, setState] = useState({});
-	// const [day, setDay] = useState("Monday");
 
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointment: {},
-    interviewers: {}
+    appointments: {},
+    interviewers: {},
+    // bookInterview: {bookInterview}
   });
 
-  // console.log("this is state")
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview}
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState({
+      ...state,   
+      appointments
+      })
+  }
+
   const appointmentForDay = getAppointmentsForDay(state, state.day)
   const interviewforDay = getInterviewersForDay(state, state.day)
 
+  // render appointments for selected day
   const appointments = appointmentForDay.map( appointment => {
+    // debugger
     const interview = getInterview(state, appointment.interview)
-      console.log("interview from total appointments", interview)
+      // console.log("interview from total appointments", interview)
       return <Appointment 
       key={appointment.id} 
       id={appointment.id}
       time={appointment.time}
       interview={interview}
       interviewer={interviewforDay}
+      bookInterview={bookInterview}
       />
       } 
     );
@@ -49,6 +67,7 @@ export default function Application(props) {
 
   useEffect(() => {
       Promise.all([
+        // axio request recieved as arrays
         axios.get('http://localhost:8001/api/days'),
         axios.get('http://localhost:8001/api/appointments'),
         axios.get('http://localhost:8001/api/interviewers')

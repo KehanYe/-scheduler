@@ -7,7 +7,7 @@ import Button from 'components/Button';
 export default function Form (props) {
   const {interviewers, onSave, onCancel} = props
 
-  const [student, setStudent] = useState(props.student || "");
+  const [student, setStudent] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
   const reset = () => {
@@ -29,7 +29,7 @@ export default function Form (props) {
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
-            placeholder="Enter Student Name"
+            placeholder="Enter name Name"
             value={student}
             onChange={(event) => setStudent(event.target.value)}
           />
@@ -43,7 +43,7 @@ export default function Form (props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          {/* <Button confirm onClick={onSave(student, interviewer)}>Save</Button> */}
+          <Button confirm onClick={() => onSave(student, interviewer)}>Save</Button>
         </section>
       </section>
     </main>

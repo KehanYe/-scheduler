@@ -24,7 +24,7 @@ export const getInterview = (state, interview) => {
 	const interviewerNumber = interview.interviewer;
 	const student = interview.student;
 	const interviewerList = { ...state.interviewers };
-	const interviewer = interviewerList[interviewerNumber];
+	const interviewer = interviewerList[interviewerNumber] || {};
 
 	return { student, interviewer };
 };
