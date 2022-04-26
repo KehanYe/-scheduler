@@ -13,7 +13,7 @@ export default function Form (props) {
   const [student, setStudent] = useState(props.student || "");
   // console.log("student state in Form", student)
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  console.log("interviewer state in Form", interviewer )
+  // console.log("interviewer state in Form", interviewer )
 
 
   const reset = () => {

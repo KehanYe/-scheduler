@@ -8,7 +8,7 @@ import Empty from 'components/Appointment/Empty';
 import Form from 'components/Appointment/Form';
 import Status from 'components/Appointment/Status';
 import Confirm from './Confirm';
-// import Error from './Error';
+import Error from './Error';
 
 const EMPTY = 'EMPTY';
 const SHOW = 'SHOW';
@@ -17,27 +17,28 @@ const SAVING = "SAVING";
 const CONFIRM = "CONFIRM";
 const DELETING = "DELETING";
 const EDIT = "EDIT"
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE"
 
 export default function Appointment({ id, time, interview, interviewer, bookInterview, deleteInterview}) {
 	const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
-	// debugger
-
 	function save(name, interviewer) {
 		transition(SAVING)
-    const interview = {
-			student: name,
-			interviewer
-		};
+    const interview = { student: name, interviewer };
 		// console.log("save function properties", interviewer, interview)
 		// console.log('id in appointment component', id);
-		bookInterview(id, interview).then(() => transition(SHOW));
+		bookInterview(id, interview)
+    .then(() => transition(SHOW))
+    .catch(err => transition(ERROR_SAVE, true));
 	}
 
 	function deleteAppointment() {
-		transition(DELETING)
+		transition(DELETING, true)
     console.log('id in appointment component', id);
-    deleteInterview(id).then( res => transition(EMPTY));
+    deleteInterview(id)
+    .then( res => transition(EMPTY))
+    .catch(err => transition(ERROR_DELETE, true));
 	}
 
 
@@ -64,6 +65,8 @@ export default function Appointment({ id, time, interview, interviewer, bookInte
         student={interview.student}
         interviewer={interview.interviewer.id}
       />}
+      {mode === ERROR_SAVE && <Error message={"There was an issue with saving your appointment"} onClose={back}/>}
+      {mode === ERROR_DELETE && <Error message={"There was an issue with delete your appointment"} onClose={back}/>}
   	</article>
 	);
 }
