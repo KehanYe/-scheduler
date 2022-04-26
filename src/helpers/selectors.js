@@ -2,7 +2,7 @@ export const getAppointmentsForDay = (state, day) => {
 	if (!state.days) return [];
 	const foundDay = state.days.find((selectedDay) => selectedDay.name === day);
 
-	console.log('this is selectedDay from foundDay', foundDay);
+	// console.log('this is selectedDay from foundDay', foundDay);
 	// => foundDay is an object with properity that is array of appointments
 	if (!foundDay) return [];
 
@@ -19,7 +19,7 @@ export const getAppointmentsForDay = (state, day) => {
 
 export const getInterview = (state, interview) => {
 	if (!interview) return null;
-	console.log(state.interviewers);
+	// console.log(state.interviewers);
 
 	const interviewerNumber = interview.interviewer;
 	const student = interview.student;
@@ -28,3 +28,12 @@ export const getInterview = (state, interview) => {
 
 	return { student, interviewer };
 };
+
+export const getInterviewersForDay = (state, day) => {
+	const foundDay  = state.days.find((selectedDay) => selectedDay.name === day);
+
+	if (!foundDay) return [];
+
+	return foundDay.interviewers.map((element) => state.interviewers[element]);
+
+}
