@@ -5,10 +5,16 @@ import Button from 'components/Button';
 
 
 export default function Form (props) {
-  const {interviewers, onSave, onCancel} = props
+  // const {interviewers, onSave, onCancel} = props
+  // console.log("interviewers props passed to form", interviewers)
+  // console.log("interviewer props passed to form", props.interviewer)
 
-  const [student, setStudent] = useState(props.name || "");
+  
+  const [student, setStudent] = useState(props.student || "");
+  // console.log("student state in Form", student)
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  console.log("interviewer state in Form", interviewer )
+
 
   const reset = () => {
     setStudent('');
@@ -17,7 +23,7 @@ export default function Form (props) {
 
   const cancel = () => {
     reset();
-    onCancel();
+    props.onCancel();
   }
 
 	return (
@@ -35,7 +41,7 @@ export default function Form (props) {
           />
         </form>
         <InterviewerList 
-            interviewers={interviewers}
+            interviewers={props.interviewers}
             value={interviewer} 
             onChange={setInterviewer}
         />
@@ -43,7 +49,7 @@ export default function Form (props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={() => onSave(student, interviewer)}>Save</Button>
+          <Button confirm onClick={() => props.onSave(student, interviewer)}>Save</Button>
         </section>
       </section>
     </main>

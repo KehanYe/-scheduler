@@ -99,7 +99,7 @@ export default function Application(props) {
         const appointments = valuePromise[1].data
         // console.log("appoinments after Promise.valuePromise", appointments)
         const interviewers = valuePromise[2].data
-        console.log("interviewers after Promise.valuePromise", interviewers)
+        // console.log("interviewers after Promise.valuePromise", interviewers)
 
         setState(prev =>({...prev, days, appointments, interviewers}))
         // console.log("appoinments after Promise.valuePromise", appointments)

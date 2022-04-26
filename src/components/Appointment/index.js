@@ -15,7 +15,8 @@ const SHOW = 'SHOW';
 const CREATE = 'CREATE';
 const SAVING = "SAVING";
 const CONFIRM = "CONFIRM";
-const DELETING= "DELETING"
+const DELETING = "DELETING";
+const EDIT = "EDIT"
 
 export default function Appointment({ id, time, interview, interviewer, bookInterview, deleteInterview}) {
 	const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
@@ -29,7 +30,7 @@ export default function Appointment({ id, time, interview, interviewer, bookInte
 			interviewer
 		};
 		// console.log("save function properties", interviewer, interview)
-		console.log('id in appointment component', id);
+		// console.log('id in appointment component', id);
 		bookInterview(id, interview).then(() => transition(SHOW));
 	}
 
@@ -40,7 +41,7 @@ export default function Appointment({ id, time, interview, interviewer, bookInte
 	}
 
 
-	console.log('mode in index', mode);
+	// console.log('mode in index', mode);
 
 	return (
 		<article className="appointment">
@@ -48,9 +49,21 @@ export default function Appointment({ id, time, interview, interviewer, bookInte
 			{mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SAVING && <Status message={"Saving..."} />}
 			{mode === CREATE && <Form interviewers={interviewer} onCancel={back} onSave={save} />}
-			{mode === SHOW && <Show student={interview.student} interviewer={interview.interviewer} onDelete={() => transition(CONFIRM)} />}
+			{mode === SHOW && <Show 
+        student={interview.student} 
+        interviewer={interview.interviewer} 
+        onDelete={() => transition(CONFIRM)}
+        onEdit={() => transition(EDIT)}
+      />}
       {mode === DELETING && <Status message={"Deleting..."} />}
       {mode === CONFIRM && <Confirm onCancel={back} onConfirm={deleteAppointment} message={"Are you sure you want to delete"}/>}
-		</article>
+      {mode === EDIT && <Form 
+        interviewers={interviewer} 
+        onCancel={back} 
+        onSave={save} 
+        student={interview.student}
+        interviewer={interview.interviewer.id}
+      />}
+  	</article>
 	);
 }
