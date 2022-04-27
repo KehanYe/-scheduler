@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InterviewerListItem from 'components/InterviewerListItem';
 
 // Sass Styling
@@ -25,4 +26,9 @@ export default function InterviewerList(props) {
 			<ul className="interviewers__list">{interviewerList}</ul>
 		</section>
 	);
+
+}
+
+InterviewerList.propTypes = {
+  interviewerList: PropTypes.array.isRequired
 }
