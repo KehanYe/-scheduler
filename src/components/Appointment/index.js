@@ -24,7 +24,10 @@ export default function Appointment({ id, time, interview, interviewer, bookInte
 	const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
 	function save(name, interviewer) {
-		transition(SAVING)
+		// let edit;
+    // if (mode === edit) edit = true;
+    
+    transition(SAVING)
     const interview = { student: name, interviewer };
 		// console.log("save function properties", interviewer, interview)
 		// console.log('id in appointment component', id);
