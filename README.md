@@ -3,10 +3,10 @@
 Interview Scheduler is a SPA React application that allows users to book, edit and cancel interviews. This project focuses on React, with focus on ipmlementing hooks, and Test Driven Development.
 
 ## Navigating and Creating New Appointments
-["Gif of navigating then creating new appointments"](/Users/kehanfu/react-projects/scheduler/docs/Edit and Update Appointments.gif)
+["Gif of navigating then creating new appointments"](https://github.com/KehanYe/-scheduler/blob/master/docs/Edit%20and%20Update%20Appointments.gif)
 
 ## Editing and Updating Existing Appointments
-["Gif of navigating editing and updating appointment"](/Users/kehanfu/react-projects/scheduler/docs/Edit and Update Appointments.gif)
+["Gif of navigating editing and updating appointment"](https://github.com/KehanYe/-scheduler/blob/master/docs/Navigating%20and%20Creating%20New%20Appointments.gif)
 
 
 ## Setup
