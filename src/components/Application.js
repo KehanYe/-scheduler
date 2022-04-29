@@ -13,11 +13,8 @@ export default function Application(props) {
 
 	const interviewforDay = getInterviewersForDay(state, state.day);
 
-	// render appointments for selected day
 	const appointments = getAppointmentsForDay(state, state.day).map((appointment) => {
-		// debugger
 		const interview = getInterview(state, appointment.interview);
-		// console.log("interview from total appointments", interview)
 		return (
 			<Appointment
 				key={appointment.id}

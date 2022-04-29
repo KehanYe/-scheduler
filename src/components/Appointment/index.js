@@ -24,13 +24,9 @@ export default function Appointment({ id, time, interview, interviewer, bookInte
 	const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
 	function save(name, interviewer) {
-		// let edit;
-    // if (mode === edit) edit = true;
     
     transition(SAVING)
     const interview = { student: name, interviewer };
-		// console.log("save function properties", interviewer, interview)
-		// console.log('id in appointment component', id);
 		bookInterview(id, interview)
     .then(() => transition(SHOW))
     .catch(err => transition(ERROR_SAVE, true));
@@ -38,14 +34,10 @@ export default function Appointment({ id, time, interview, interviewer, bookInte
 
 	function deleteAppointment() {
 		transition(DELETING, true)
-    console.log('id in appointment component', id);
     deleteInterview(id)
     .then( res => transition(EMPTY))
     .catch(err => transition(ERROR_DELETE, true));
 	}
-
-
-	// console.log('mode in index', mode);
 
 	return (
 		<article className="appointment">
