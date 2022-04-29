@@ -31,8 +31,8 @@ npm test
 npm run storybook
 ```
 
-## Running Storybook Visual Testbed
-Data is stored in [PostgresQL database](https://github.com/KehanYe/scheduler-api). 
+## Api Database
+Data is stored in seperate [PostgresQL database](https://github.com/KehanYe/scheduler-api). See instructions in repo for setup.
 
 ## Dependencies
 - "axios": "^0.26.1",
